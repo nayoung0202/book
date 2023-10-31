@@ -17,9 +17,6 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-    public Book(Long id){
-        this.id = id;
-    }
     public Book() {
 
     }
