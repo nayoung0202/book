@@ -76,6 +76,7 @@ public class BM extends BookManager {
         System.out.print("출판일(YYYY-MM-DD): ");
         bookInfo[4] = sc.nextLine();
 
+
         // book을 저장소에 저장
         Book book = new Book(Long.parseLong(bookInfo[0]),
                 bookInfo[1],
