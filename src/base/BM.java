@@ -30,36 +30,23 @@ public class BM extends BookManager {
 
     @Override
     public void updateBook(Book book) {
-        for(int i = 1; i <= bookList.size(); i++){
-            if(book.getId() == 1) {
-                bookList.set(i-1,book);
-                System.out.println("수정한 도서 정보가 반영 되었습니다.");
-                break;
-            }
-            if(book.getId() == i + 1) {
-                bookList.set(i,book);
-                System.out.println("수정한 도서 정보가 반영 되었습니다.");
-                break;
-            } else {
-                System.out.println("해당 되는 도서가 없습니다.");
+        for (Book b : bookList) {
+            if (book.getId().equals(b.getId())) {
+                b.setName(book.getName());
+                b.setAuthor(book.getAuthor());
+                b.setIsbn(book.getIsbn());
+                b.setPublishedDate(book.getPublishedDate());
             }
         }
-    }
-    @Override
-    public void removeBook(Book book) {
-        for(int i = 1; i <= bookList.size(); i++){
-            if(book.getId() == 1) {
-                bookList.remove(i-1);
-                System.out.println("수정한 도서 정보가 반영 되었습니다.");
-                break;
+
+        @Override
+        public void removeBook (long id){
+            for (Book b : bookList) {
+                if (id == b.getId()) {
+                    bookList.remove(b);
+                }
             }
-            if(book.getId() == i + 1) {
-                bookList.remove(i);
-                System.out.println("수정한 도서 정보가 반영 되었습니다.");
-                break;
-            } else {
-                System.out.println("해당 되는 도서가 없습니다.");
-            }
+            System.out.println("도서 삭제가 완료되었습니다.");
         }
     }
 }

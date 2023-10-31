@@ -21,19 +21,20 @@ public class Execute {
             switch (userInput) {
                 case "1":
                     // 조회 함수 호출
-                    printAllBook();
+                    bm.printAllBook();
                     break;
                 case "2":
                     // 도서 등록 함수 호출
-                    addBook();
+                    bm.addBook(new Book());
                     break;
                 case "3":
                     // 수정
-                    updateBook();
+                    bm.printAllBook();
                     break;
                 case "4":
                     // 삭제
-                    deleteBook();
+                    String id1 = sc.nextLine();
+                    bm.removeBook(Long.parseLong(id1));
                     break;
                 case "q":
                     System.out.println("프로그램 종료!");
@@ -44,12 +45,11 @@ public class Execute {
     }
 
     private static void deleteBook() {
-        System.out.println("삭제 메서드 실행");
-        System.out.print("삭제할 번호를 입력해 주세요: ");
-        String id = sc.nextLine();
+        System.out.println("삭제하고자 하는 도서번호를 입력해주세요");
+        System.out.print("선택 >> ");
+        Long id = Long.parseLong(sc.nextLine());
 
-        Book book = new Book(Long.parseLong(id));
-        bm.removeBook(book);
+        bm.removeBook(id);
     }
 
     private static void updateBook() {
