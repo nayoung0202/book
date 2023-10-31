@@ -5,4 +5,5 @@ public abstract class BookManager {
     abstract void printAllBook();
     abstract void updateBook(Book book);
     abstract void removeBook(Book book);
+
 }
