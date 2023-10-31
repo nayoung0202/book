@@ -1,5 +1,4 @@
 package base;
-
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -21,11 +20,11 @@ public class Execute {
 
             switch (userInput) {
                 case "1":
-                    // 조회
+                    // 조회 함수 호출
                     printAllBook();
                     break;
                 case "2":
-                    // 등록
+                    // 도서 등록 함수 호출
                     addBook();
                     break;
                 case "3":
@@ -46,46 +45,58 @@ public class Execute {
 
     private static void deleteBook() {
         System.out.println("삭제 메서드 실행");
-        // bm.removeBook(?);
+        System.out.print("삭제할 번호를 입력해 주세요: ");
+        String id = sc.nextLine();
+
+        Book book = new Book(Long.parseLong(id));
+        bm.removeBook(book);
     }
 
     private static void updateBook() {
         System.out.println("수정 메서드 실행");
-        // bm.updateBook(?);
-    }
-
-    private static void addBook() {
-        System.out.println("등록 메서드 실행");
-        // 1. 콘솔화면을 통해 사용자로부터 도서정보를 입력을 받는다.
-            // id, 제목, 저자, isbn, 출판일 (5가지) (v)
-            // 위의 정보로 책 객체를 생성한다. (v)
-        // 2. 도서를 등록한다.
-            // 사서를 통해 도서 저장 요청
-
-        System.out.print("id: ");
+        System.out.print("수정할 도서번호를 입력해 주세요: ");
         String id = sc.nextLine();
+        System.out.println("[수정 정보를 입력해 주세요]");
         System.out.print("제목: ");
         String name = sc.nextLine();
         System.out.print("저자: ");
         String author = sc.nextLine();
-        System.out.print("isbn: ");
+        System.out.print("ISBN: ");
         String isbn = sc.nextLine();
-        System.out.print("출판일(YYYY-MM-DD): ");
+        System.out.print("출판일: ");
+        String publishDate = sc.nextLine();
+        Book book = new Book(Long.parseLong(id),
+                name,
+                author,
+                Long.parseLong(isbn),
+                LocalDate.parse(publishDate));
+        bm.updateBook(book);
+    }
+
+    private static void addBook() {
+        System.out.println("등록 메서드 실행");
+        System.out.print("도서번호를 입력해주세요." + "(유일한 번호) >>");
+        String id = sc.nextLine();
+        System.out.print("도서명을 입력해주세요. >>");
+        String name = sc.nextLine();
+        System.out.print("저자명을 입력해주세요. >>");
+        String author = sc.nextLine();
+        System.out.print("ISBN을 입력해주세요. >>");
+        String isbn = sc.nextLine();
+        System.out.print("출간일을 입력해주세요. (YYYY-MM-DD형식) >>");
         String publishDate = sc.nextLine();
 
-        // id, isbn는 String 타입이므로 Long으로 변환 후 매개값을 주어야한다.
-        // publishedDate는 String 타입인데 LocalDate 타입으로 변환해주어야 한다. ==> "구글링"
         Book book = new Book(Long.parseLong(id),
-                        name,
-                        author,
-                        Long.parseLong(isbn),
-                        LocalDate.parse(publishDate));
+                name,
+                author,
+                Long.parseLong(isbn),
+                LocalDate.parse(publishDate));
 
         bm.addBook(book);
     }
-
     private static void printAllBook() {
         System.out.println("조회 메서드 실행");
         bm.printAllBook();
     }
+
 }
