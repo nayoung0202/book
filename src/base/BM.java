@@ -38,15 +38,15 @@ public class BM extends BookManager {
                 b.setPublishedDate(book.getPublishedDate());
             }
         }
+    }
 
         @Override
-        public void removeBook (long id){
-            for (Book b : bookList) {
-                if (id == b.getId()) {
-                    bookList.remove(b);
-                }
+    public void removeBook(long id) {
+        for (Book b : bookList) {
+            if (id == b.getId()) {
+                bookList.remove(b);
             }
-            System.out.println("도서 삭제가 완료되었습니다.");
         }
+        System.out.println("도서 삭제가 완료되었습니다.");
     }
 }
