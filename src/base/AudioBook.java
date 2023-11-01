@@ -3,12 +3,12 @@ package base;
 import java.time.LocalDate;
 
 public class AudioBook extends Book{
-    private String fileSize;
+    private Long fileSize;
     private String language;
     private int playTime;
 
     public AudioBook(Long id, String name, String author, Long isbn, LocalDate publishedDate,
-                     String fileSize, String language, int playTime ) {
+                     Long fileSize, String language, int playTime ) {
         super (id, name, author, isbn, publishedDate);
 
         this.fileSize = fileSize;
@@ -16,7 +16,7 @@ public class AudioBook extends Book{
         this.language = language;
     }
 
-    public String getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
@@ -28,7 +28,7 @@ public class AudioBook extends Book{
         return playTime;
     }
 
-    public void setFileSize(String fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 

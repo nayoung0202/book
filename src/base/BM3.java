@@ -86,8 +86,8 @@ public class BM3 extends BookManager {
             } catch (NumberFormatException e) {
                 System.out.println("id 혹은 isbn은 숫자만 입력 가능합니다" + e.getMessage());
                 return;
-            } catch (DateTimeParseException e1) {
-                System.out.println("입력된 날짜 형식이 틀렸습니다." + e1.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("입력된 날짜 형식이 틀렸습니다." + e.getMessage());
                 return;
             }
             // book타입 저장
@@ -115,11 +115,12 @@ public class BM3 extends BookManager {
                 long IdErr = Long.parseLong(bookInfo[0]);
                 long IsbnErr = Long.parseLong(bookInfo[3]);
                 LocalDate LocalDateErr = LocalDate.parse(bookInfo[4]);
+                long FileSizeErr = Long.parseLong(bookInfo[5]);
             } catch (NumberFormatException e) {
-                System.out.println("id 혹은 isbn은 숫자만 입력 가능합니다" + e.getMessage());
+                System.out.println("id, isbn, 파일크기는 숫자만 입력 가능합니다" + e.getMessage());
                 return;
-            } catch (DateTimeParseException e1) {
-                System.out.println("입력된 날짜 형식이 틀렸습니다." + e1.getMessage());
+            } catch (DateTimeParseException e) {
+                System.out.println("입력된 날짜 형식이 틀렸습니다." + e.getMessage());
                 return;
             }
             // Ebook타입 저장
@@ -128,7 +129,7 @@ public class BM3 extends BookManager {
                     bookInfo[2],
                     Long.parseLong(bookInfo[3]),
                     LocalDate.parse(bookInfo[4]),
-                    bookInfo[5]);
+                    Long.parseLong(bookInfo[5]));
             bookList.add(Ebook);
         } else if (InputNumber.equals("3")) {
             String[] bookInfo = new String[8];
@@ -152,8 +153,10 @@ public class BM3 extends BookManager {
                 long IdErr = Long.parseLong(bookInfo[0]);
                 long IsbnErr = Long.parseLong(bookInfo[3]);
                 LocalDate LocalDateErr = LocalDate.parse(bookInfo[4]);
+                long FileSizeErr = Long.parseLong(bookInfo[5]);
+                Integer PlayTimeErr = Integer.parseInt(bookInfo[7]);
             } catch (NumberFormatException e) {
-                System.out.println("id 혹은 isbn은 숫자만 입력 가능합니다" + e.getMessage());
+                System.out.println("id,isbn,파일크기,재생시간은 숫자만 입력 가능합니다" + e.getMessage());
                 return;
             } catch (DateTimeParseException e) {
                 System.out.println("입력된 날짜 형식이 틀렸습니다." + e.getMessage());
@@ -165,7 +168,7 @@ public class BM3 extends BookManager {
                     bookInfo[2],
                     Long.parseLong(bookInfo[3]),
                     LocalDate.parse(bookInfo[4]),
-                    bookInfo[5],
+                    Long.parseLong(bookInfo[5]),
                     bookInfo[6],
                     Integer.parseInt(bookInfo[7]));
             bookList.add(audioBook);
@@ -218,9 +221,10 @@ public class BM3 extends BookManager {
                 System.out.println();
             }
         } else if (InputNumber.equals("2")) {
-            System.out.print("책 제목을 입력해 주세요(부분만 입력 가능): ");
+            System.out.println("책 제목을 입력해 주세요(부분만 입력 가능) ");
             System.out.println("ex) " + "'해리'를 입력하시면 " + "해리란 단어가 포함된 책을 조회합니다.");
             System.out.println("아무것도 입력하지 않을 경우 전체 조회합니다.");
+            System.out.print("책 제목(부분만 입력 가능): ");
             String InputName = sc.nextLine();
             for (Book book : bookList){
                 if(book.getName().contains(InputName)){
@@ -256,16 +260,14 @@ public class BM3 extends BookManager {
             String StartDate = sc.nextLine();
             System.out.println("종료일을 입력해 주세요 :");
             String EndDate = sc.nextLine();
-
+            try {
+                LocalDate.parse(StartDate);
+                LocalDate.parse(EndDate);
+            } catch (DateTimeParseException e) {
+                System.out.println("입력된 날짜 형식이 틀렸습니다." + e.getMessage());
+                return;
+            }
             for (Book book : bookList){
-                try {
-                    LocalDate.parse(StartDate);
-                    LocalDate.parse(EndDate);
-                } catch (DateTimeParseException e) {
-                    System.out.println("입력된 날짜 형식이 틀렸습니다." + e.getMessage());
-                    return;
-                }
-
                 if(book.getPublishedDate().isBefore(LocalDate.parse(EndDate)) && book.getPublishedDate().isAfter(LocalDate.parse(StartDate))){
                     System.out.print("[");
                     System.out.print(book.getId());
@@ -298,7 +300,6 @@ public class BM3 extends BookManager {
             System.out.println("잘못된 조회 번호 입니다.");
         }
     }
-
 
     @Override
     public void updateBook() {
@@ -337,7 +338,6 @@ public class BM3 extends BookManager {
         bookInfo[3] = sc.nextLine();
         System.out.print("출판일(YYYY-MM-DD): ");
         bookInfo[4] = sc.nextLine();
-
         try{
             long IdErr = Long.parseLong(bookInfo[0]);
             long IsbnErr = Long.parseLong(bookInfo[3]);
@@ -359,16 +359,34 @@ public class BM3 extends BookManager {
         if(book instanceof EBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();
-            ((EBook)book).setFileSize(bookInfo[5]);
+            try{
+                long FileSizeErr = Long.parseLong(bookInfo[5]);
+            } catch (NumberFormatException e){
+                System.out.println("파일크기는 숫자만 입력 가능합니다." + e.getMessage());
+                return;
+            }
+            ((EBook)book).setFileSize(Long.parseLong(bookInfo[5]));
         } else if(book instanceof AudioBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();
-            ((AudioBook)book).setFileSize(bookInfo[5]);
+            try{
+                long FileSizeErr = Long.parseLong(bookInfo[5]);
+            } catch (NumberFormatException e){
+                System.out.println("파일크기는 숫자만 입력 가능합니다." + e.getMessage());
+                return;
+            }
+            ((AudioBook)book).setFileSize(Long.parseLong(bookInfo[5]));
             System.out.print("재생언어: ");
             bookInfo[6] = sc.nextLine();
             ((AudioBook)book).setLanguage(bookInfo[6]);
             System.out.print("재생시간(초): ");
             bookInfo[7] = sc.nextLine();
+            try{
+                long PlayTimeErr = Long.parseLong(bookInfo[7]);
+            } catch (NumberFormatException e){
+                System.out.println("재생시간은 숫자만 입력 가능합니다." + e.getMessage());
+                return;
+            }
             ((AudioBook)book).setPlayTime(Integer.parseInt(bookInfo[7]));
         }
     }
@@ -382,7 +400,12 @@ public class BM3 extends BookManager {
         // 사서한테 도서 삭제 요청
         System.out.print("삭제할 도서번호를 입력해주세요: ");
         String id = sc.nextLine();
-
+        try {
+            long IdErr = Long.parseLong(id);
+        } catch(NumberFormatException e)  {
+            System.out.println("번호는 숫자 형식입니다." + e.getMessage());
+            return;
+        }
         Book book = findBook(Long.parseLong(id));
         if (book == null) {
             System.out.println("입력하신 책을 찾을 수 없습니다.");
