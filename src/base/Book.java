@@ -8,7 +8,6 @@ public class Book {
     private String author;
     private Long isbn;
     private LocalDate publishedDate;
-//    private   double FileSize;
 
 
     public Book(Long id, String name, String author, Long isbn, LocalDate publishedDate) {
@@ -63,11 +62,4 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
-//    public double getFileSize() {
-//        return FileSize;
-//    }
-//
-//    public void setFileSize(double fileSize) {
-//        FileSize = fileSize;
-//    }
 }
