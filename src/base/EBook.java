@@ -10,6 +10,11 @@ public class EBook extends Book {
 
         this.fileSize = fileSize;
     }
+    public EBook(String name, String author, Long isbn, LocalDate publishedDate, Long fileSize) {
+        super (name, author, isbn, publishedDate);
+
+        this.fileSize = fileSize;
+    }
     public Long getFileSize() {
         return fileSize;
     }

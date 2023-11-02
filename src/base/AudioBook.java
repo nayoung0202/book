@@ -15,6 +15,14 @@ public class AudioBook extends Book{
         this.playTime = playTime;
         this.language = language;
     }
+    public AudioBook(String name, String author, Long isbn, LocalDate publishedDate,
+                     Long fileSize, String language, int playTime ) {
+        super (name, author, isbn, publishedDate);
+
+        this.fileSize = fileSize;
+        this.playTime = playTime;
+        this.language = language;
+    }
 
     public Long getFileSize() {
         return fileSize;

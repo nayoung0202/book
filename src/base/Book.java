@@ -1,6 +1,7 @@
 package base;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Book {
     private Long id;
@@ -9,9 +10,14 @@ public class Book {
     private Long isbn;
     private LocalDate publishedDate;
 
-
     public Book(Long id, String name, String author, Long isbn, LocalDate publishedDate) {
         this.id = id;
+        this.name = name;
+        this.author = author;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+    }
+    public Book(String name, String author, Long isbn, LocalDate publishedDate) {
         this.name = name;
         this.author = author;
         this.isbn = isbn;
@@ -62,4 +68,20 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, isbn);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+    if(obj instanceof Book){
+        Book b = (Book) obj;
+        if(this.name.equals(b.name) && this.author.equals(b.author) && this.isbn == b.isbn){
+            return true;
+        }
+        return false;
+    }
+        return false;
+    }
 }
