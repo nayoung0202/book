@@ -23,6 +23,12 @@ public class Book {
         this.isbn = isbn;
         this.publishedDate = publishedDate;
     }
+    public Book(long id, String author, Long isbn, LocalDate publishedDate) {
+        this.id = id;
+        this.author = author;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+    }
 
     public Book() {
 

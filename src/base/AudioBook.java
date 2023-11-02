@@ -1,6 +1,7 @@
 package base;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AudioBook extends Book{
     private Long fileSize;
@@ -46,5 +47,22 @@ public class AudioBook extends Book{
 
     public void setPlayTime(int playTime) {
         this.playTime = playTime;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAuthor(), getIsbn());
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof AudioBook){
+            AudioBook b = (AudioBook) obj;
+            if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn() == b.getIsbn()){
+                return true;
+            }
+            return false;
+        }
+        return false;
     }
 }
