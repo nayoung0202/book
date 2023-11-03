@@ -175,6 +175,7 @@ public class BM4 extends BookManager {
         }
     }
 
+
     @Override
     public void printAllBook() {
         System.out.println("등록할 책의 종류를 선택해 주세요");
@@ -211,7 +212,19 @@ public class BM4 extends BookManager {
                 }
             }
         } else if (InputNumber.equals("3")) {
-            System.out.println("정렬관련 패스");
+
+            String sortbook = "";
+            Set<Long> keyset = bookList.keySet();
+            Iterator<Long> iterator = keyset.iterator();
+            while (iterator.hasNext()) {
+                Long key = iterator.next();
+                Book bookval = bookList.get(key);
+                sortbook += bookval.toString(key);
+            }
+            System.out.println(sortbook);
+            sortbook
+
+
         } else if (InputNumber.equals("4")) {
             System.out.println("시작일을 입력해 주세요 :");
             String StartDate = sc.nextLine();
