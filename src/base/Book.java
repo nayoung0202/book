@@ -1,6 +1,7 @@
 package base;
 
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Book {
     private Long id;
@@ -9,6 +10,15 @@ public class Book {
     private Long isbn;
     private LocalDate publishedDate;
 
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 
     public Book(Long id, String name, String author, Long isbn, LocalDate publishedDate) {
         this.id = id;
@@ -17,6 +27,7 @@ public class Book {
         this.isbn = isbn;
         this.publishedDate = publishedDate;
     }
+
 
     public Book() {
 
@@ -62,4 +73,6 @@ public class Book {
         this.publishedDate = publishedDate;
     }
 
+
 }
+
