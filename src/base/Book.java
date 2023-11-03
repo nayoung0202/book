@@ -2,6 +2,7 @@ package base;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 public class Book {
     private Long id;
@@ -90,4 +91,18 @@ public class Book {
     }
         return false;
     }
-}
+
+    public String toString(Long key) {
+        String toStr = "";
+        toStr += "[" + key + "," + this.name + "," + this.author + "," + this.isbn + "," + this.publishedDate;
+        if (this instanceof EBook) {
+            toStr += ", " + ((EBook)this).getFileSize() + "mb";
+        } else if(this instanceof AudioBook){
+            toStr += ", " + ((AudioBook)this).getFileSize() + "mb, " + ((AudioBook)this).getLanguage() + ", " +((AudioBook)this).getPlayTime() + "초";
+        }
+        toStr += "]";
+        return toStr;
+        }
+    }
+
+
