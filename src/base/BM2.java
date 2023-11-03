@@ -3,6 +3,7 @@ package base;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.LoggingPermission;
 
 // BookManager를 구현하는 구현 객체
 public class BM2 extends BookManager {
@@ -105,7 +106,7 @@ public class BM2 extends BookManager {
                     bookInfo[2],
                     Long.parseLong(bookInfo[3]),
                     LocalDate.parse(bookInfo[4]),
-                    bookInfo[5]);
+                    Long.parseLong(bookInfo[5]));
             bookList.add(Ebook);
         } else if (InputNumber.equals("3")) {
             String[] bookInfo = new String[8];
@@ -216,7 +217,7 @@ public class BM2 extends BookManager {
         if(book instanceof EBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();
-            ((EBook)book).setFileSize(bookInfo[5]);
+            ((EBook)book).setFileSize(Long.parseLong(bookInfo[5]));
         } else if(book instanceof AudioBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();

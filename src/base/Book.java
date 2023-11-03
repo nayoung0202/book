@@ -29,13 +29,19 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        String All = "Book{" +
                 "도서 번호: " + id +
-                ", 책 제목'" + name + '\'' +
-                ", 작가'" + author + '\'' +
+                ", 책 제목: '" + name + '\'' +
+                ", 작가: '" + author + '\'' +
                 ", isbn : " + isbn +
                 ", 출판일 : " + publishedDate +
                 '}';
+        if(this instanceof EBook) {
+            All += "파일 크기 : " + ((EBook) this).getFileSize();
+        } else if (this instanceof AudioBook) {
+            All += "파일 크기 : " + ((AudioBook)this).getFileSize() + "언어 : " + ((AudioBook)this).getLanguage() + "실행 시간 : " + ((AudioBook)this).getPlayTime();
+        }
+        return All;
     }
 
     @Override

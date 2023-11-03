@@ -52,6 +52,9 @@ public class BM4 extends BookManager {
         bookList.add(new Book(1L, "돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331796"), LocalDate.parse("2023-06-15")));
         bookList.add(new Book(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2022-02-20")));
         bookList.add(new Book(3L, "위기의 역사", "오건영", Long.parseLong("9791169850360"), LocalDate.parse("2021-07-19")));
+        bookList.add(new EBook(4L, "위기의 역사", "오건영", Long.parseLong("9791169850360"), LocalDate.parse("2021-07-19"),11L));
+        bookList.add(new AudioBook(4L, "위기의 역사", "오건영", Long.parseLong("9791169850360"), LocalDate.parse("2021-07-19"),"11","영어",1));
+
     }
 
     @Override
@@ -169,7 +172,7 @@ public class BM4 extends BookManager {
                     bookInfo[2],
                     Long.parseLong(bookInfo[3]),
                     LocalDate.parse(bookInfo[4]),
-                    bookInfo[5]);
+                    Long.parseLong(bookInfo[5]));
             bookList.add(Ebook);
 
         } else if (InputNumber.equals("3")) {
@@ -470,7 +473,7 @@ public class BM4 extends BookManager {
         if(book instanceof EBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();
-            ((EBook)book).setFileSize(bookInfo[5]);
+            ((EBook)book).setFileSize(Long.parseLong(bookInfo[5]));
         } else if(book instanceof AudioBook){
             System.out.print("파일크기(mb): ");
             bookInfo[5] = sc.nextLine();
