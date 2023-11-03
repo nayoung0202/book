@@ -2,6 +2,7 @@ package base;
 
 
 public abstract class BookManager {
+
     abstract void init();
     abstract void interactWithUser();
     abstract void addBook();

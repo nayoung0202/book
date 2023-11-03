@@ -12,7 +12,7 @@ import static java.lang.System.in;
 import static java.util.Collections.sort;
 
 // BookManager를 구현하는 구현 객체
-public class BM3 extends BookManager {
+public class BM4 extends BookManager {
 
     private ArrayList<Book> bookList = new ArrayList<>();
     static Scanner sc = new Scanner(in);
@@ -232,7 +232,9 @@ public class BM3 extends BookManager {
         String userInput = sc.nextLine();
 
         if (userInput.equals("1")) {
-            PrintName();
+            for (Book book : bookList) {
+                System.out.println(book.toString());
+            }
         } else if (userInput.equals("2")) {
             System.out.print("제목의 키워드를 입력하시오: ");
             String userbooksearch = sc.nextLine();
@@ -400,7 +402,7 @@ public class BM3 extends BookManager {
                 System.out.print("]");
                 System.out.println();
             }
-    }else {
+        }else {
             System.out.println("Error!!");
         }
 

@@ -1,11 +1,31 @@
 package base;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class AudioBook extends Book{
     private String fileSize;
     private String language;
     private int playTime;
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof AudioBook ) {
+            AudioBook b = (AudioBook) obj;
+
+            if(this.getName().equals(b.getName()) &&
+                this.getAuthor().equals(b.getAuthor())
+                && this.getIsbn().equals(b.getIsbn())) {
+            return true;
+        }
+    }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), fileSize, language, playTime);
+    }
 
     public AudioBook(Long id, String name, String author, Long isbn, LocalDate publishedDate,
                      String fileSize, String language, int playTime ) {

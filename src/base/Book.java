@@ -1,7 +1,7 @@
 package base;
 
 import java.time.LocalDate;
-import java.util.Comparator;
+import java.util.Objects;
 
 public class Book {
     private Long id;
@@ -11,13 +11,36 @@ public class Book {
     private LocalDate publishedDate;
 
     @Override
-    public int hashCode() {
-        return super.hashCode();
+    public boolean equals(Object obj) {
+        if(obj instanceof Book ) {
+            Book b = (Book) obj;
+//            this.getName().equals(b.getName());
+//            this.getAuthor().equals(b.getAuthor());
+//            this.getIsbn().equals(b.getIsbn());
+
+            if(this.getName().equals(b.getName()) &&
+                    this.getAuthor().equals(b.getAuthor())
+                    && this.getIsbn().equals(b.getIsbn())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
+    public String toString() {
+        return "Book{" +
+                "도서 번호: " + id +
+                ", 책 제목'" + name + '\'' +
+                ", 작가'" + author + '\'' +
+                ", isbn : " + isbn +
+                ", 출판일 : " + publishedDate +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, author, isbn);
     }
 
     public Book(Long id, String name, String author, Long isbn, LocalDate publishedDate) {
