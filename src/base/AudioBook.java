@@ -58,7 +58,7 @@ public class AudioBook extends Book{
     public boolean equals(Object obj) {
         if(obj instanceof AudioBook){
             AudioBook b = (AudioBook) obj;
-            if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn() == b.getIsbn()){
+            if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn().equals(b.getIsbn())){
                 return true;
             }
             return false;

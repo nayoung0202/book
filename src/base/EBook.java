@@ -33,7 +33,7 @@ public class EBook extends Book {
     public boolean equals(Object obj) {
         if(obj instanceof EBook){
         EBook b = (EBook) obj;
-        if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn() == b.getIsbn()){
+        if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn().equals(b.getIsbn())){
             return true;
         }
         return false;

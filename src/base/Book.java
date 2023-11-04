@@ -82,14 +82,11 @@ public class Book {
 
     @Override
     public boolean equals(Object obj) {
-    if(obj instanceof Book){
         Book b = (Book) obj;
-        if(this.name.equals(b.name) && this.author.equals(b.author) && this.isbn == b.isbn){
+        if (this.name.equals(b.name) && this.author.equals(b.author) && this.isbn.equals(b.isbn)) {
             return true;
         }
-        return false;
-    }
-        return false;
+    return false;
     }
 
     public String toString(Long key) {
@@ -103,6 +100,6 @@ public class Book {
         toStr += "]";
         return toStr;
         }
-    }
+}
 
 

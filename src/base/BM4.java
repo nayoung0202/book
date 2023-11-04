@@ -3,8 +3,8 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
+import java.util.stream.*;
 
-// BookManager를 구현하는 구현 객체
 public class BM4 extends BookManager {
     private HashMap<Long, Book> bookList = new HashMap<>();
     static Scanner sc = new Scanner(System.in);
@@ -13,13 +13,16 @@ public class BM4 extends BookManager {
     void init() {
         bookList.put(3L, new Book("부자아빠 가난한아빠", "로버트 키요사키", Long.parseLong("5791144331796"), LocalDate.parse("1999-02-15")));
         bookList.put(20L, new AudioBook("산마처럼 비웃는 것", "미쓰다 신조", Long.parseLong("0211129850369"), LocalDate.parse("2008-01-24"), 7500L, "일본어", 9999));
-        bookList.put(1L, new Book("돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331795"), LocalDate.parse("2020-06-15")));
         bookList.put(2L, new EBook("K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20"), 1000L));
         bookList.put(4L, new AudioBook("위기의 역사", "오건영", Long.parseLong("7711123000360"), LocalDate.parse("2023-07-19"), 5000L, "영어", 1234));
         bookList.put(99L, new EBook("바이오 혁명", "매일경제", Long.parseLong("8791169021424"), LocalDate.parse("2008-05-17"), 1500L));
-        bookList.put(99L, new EBook("탁류", "매일신문", Long.parseLong("8791169021424"), LocalDate.parse("1974-05-28"), 1500L));
+        bookList.put(98L, new EBook("탁류", "채만식", Long.parseLong("8791169021424"), LocalDate.parse("1974-05-28"), 1500L));
+        bookList.put(1L, new Book("돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331795"), LocalDate.parse("2020-06-15")));
+        bookList.put(5L, new Book("돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331795"), LocalDate.parse("2021-09-24")));
+        bookList.put(6L, new Book("침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14")));
+        bookList.put(7L, new EBook("침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"),8000L));
+        bookList.put(8L, new AudioBook("침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"), 8000L, "일본어", 45000));
     }
-
     @Override
     void interactWithUser() {
         while (true) {
@@ -174,8 +177,6 @@ public class BM4 extends BookManager {
             System.out.println("없는 번호 입니다.");
         }
     }
-
-
     @Override
     public void printAllBook() {
         System.out.println("등록할 책의 종류를 선택해 주세요");
@@ -212,19 +213,26 @@ public class BM4 extends BookManager {
                 }
             }
         } else if (InputNumber.equals("3")) {
+            //HashMap bookList를 HashMap map에 저장(복사)
+            HashMap<Long, Book> map = bookList;
 
-            String sortbook = "";
-            Set<Long> keyset = bookList.keySet();
-            Iterator<Long> iterator = keyset.iterator();
-            while (iterator.hasNext()) {
-                Long key = iterator.next();
+            // 맵의 키값으로 새로운 리스트 keys를 생성
+            List<Long> keys = new ArrayList<>(map.keySet());
+            //sout(keys)할 경우, 키 값이 출력됨 ex) [1,2,98 ~~~~]
+
+            //Collections.sort를 통해 정렬한다
+            //리스트 keys에 맞추어 각 요소 1,2의 책 제목을 비교
+            //브레이크 포인트를 걸 경우 책 제목에 맞추어 키값이정렬됨
+            Collections.sort(keys, (v1, v2) -> (map.get(v1).getName().compareTo(map.get(v2).getName())));
+            //sout(keys)를 통해 정렬 여부확인
+
+            //문자순으로 정렬된 키값에 맞추어 키 전체 순회
+            for(Long key : keys){
+                //정렬된 키값에따라 새로 bookval에 담음
                 Book bookval = bookList.get(key);
-                sortbook += bookval.toString(key);
+                //정렬된 bookval에 재정의된 toString을 사용하여 출력
+                System.out.println(bookval.toString(key));
             }
-            System.out.println(sortbook);
-            sortbook
-
-
         } else if (InputNumber.equals("4")) {
             System.out.println("시작일을 입력해 주세요 :");
             String StartDate = sc.nextLine();
@@ -241,25 +249,55 @@ public class BM4 extends BookManager {
                 }
             }
         } else if (InputNumber.equals("5")) {
-            System.out.println("정렬관련 패스");
+            HashMap<Long, Book> map = bookList;
+            List<Long> keys = new ArrayList<>(map.keySet());
+            //오름차순이므로 3번 재활용함 판단하는 걸 출간일순으로만 바꿔줌
+            Collections.sort(keys, (v1, v2) -> (map.get(v1).getPublishedDate().compareTo(map.get(v2).getPublishedDate())));
+
+            for(Long key : keys){
+                Book bookval = bookList.get(key);
+                System.out.println(bookval.toString(key));
+            }
         } else if (InputNumber.equals("6")) {
-            System.out.println("중복 찾기");
+            //중복 몇번 발생하는가 체크용
             int count = 0;
+            //하나의 데이터가 전체를 순회하며 중복이 있는가 체크
+            //있다면 count를 1씩 늘리며 그 내용을 출력
+
+            HashMap<Long, Book> map = bookList;
+            List<Long> keys = new ArrayList<>(map.keySet());
             Set<Long> keyset = bookList.keySet();
             Iterator<Long> iterator = keyset.iterator();
-            while (iterator.hasNext()) {
-                Long key = iterator.next();
+            //현재 문제점
+            //다른 타입을 동등하다고 하는듯? 키 6,7,8은 데이터만 같고 전부 다른 타입임.
+            //아래 요구사항을 벗어남
+            // **Book, EBook, AudioBook**은 상호 간 동등 관계가 성립되지 않도록 합니다.
+
+            for(Long key : keys) {
                 Book bookval = bookList.get(key);
-                if (bookval.equals(bookList.values())) {
-                    System.out.println("중복있음");
-                    count++;
+                while (iterator.hasNext()) {
+                    Long itKey = iterator.next();
+                    Book bookval1 = bookList.get(itKey);
+                    //키 값을 받은 bookval이 반복자로 순회하는 bookval1의 요소 하나씩을 돌아가며 비교
+                    if (bookval.equals(bookval1) && !(key.equals(itKey))) {
+                        //이 조건문을 추가하면 키6,7,8을 같다고 하지 않음 왜??????????
+                        if(bookval1.equals(bookval) && !(itKey.equals(key))) {
+                            System.out.println("------ 중복 도서(제목,저자,isbn이 같습니다.) ------");
+                            System.out.println(bookval.toString(key));
+                            System.out.println(bookval1.toString(itKey));
+                            count++;
+                        }
+                    }
                 }
+                //whilea문을 탈출하면서 반복자 초기화 > 여기서 초기화 시키지 않으면 다음 키에서 while문을 돌때 반복자는 이미 꽉찬상태
+                iterator = keyset.iterator();
             }
+            //나누기 2 > 1과 5를 비교해서 동일하여 ++되었고, 5와 1이 비교되어 동일하기에 ++ 됨. 중첩을 제거하고자 나눠줌
+            System.out.println("중복 도서 개수 : " + count / 2);
         } else {
             System.out.println("잘못된 조회 번호 입니다.");
         }
     }
-
     @Override
     public void updateBook() {
         System.out.println("수정 메서드 실행");
@@ -359,8 +397,6 @@ public class BM4 extends BookManager {
         Iterator<Long> iterator = keyset.iterator();
         while (iterator.hasNext()) {
             Long key = iterator.next();
-            //키를 통하여 북타입 밸류에 접근
-            Book bookval = bookList.get(key);
             if (key == Long.parseLong(id)) {
                 bookList.remove(Long.parseLong(id));
                 System.out.println("삭제가 완료 되었습니다. 해당 도서 번호는 : " + id + "입니다." );
