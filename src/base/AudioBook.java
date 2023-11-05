@@ -8,21 +8,16 @@ public class AudioBook extends Book{
     private String language;
     private int playTime;
 
-    public AudioBook(Long id, String name, String author, Long isbn, LocalDate publishedDate,
-                     Long fileSize, String language, int playTime ) {
-        super (id, name, author, isbn, publishedDate);
-
+    public AudioBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, Long fileSize,
+                     String language, int playTime) {
+        this.setId(id);
+        this.setName(name);
+        this.setAuthor(author);
+        this.setIsbn(isbn);
+        this.setPublishedDate(publishedDate);
         this.fileSize = fileSize;
-        this.playTime = playTime;
         this.language = language;
-    }
-    public AudioBook(String name, String author, Long isbn, LocalDate publishedDate,
-                     Long fileSize, String language, int playTime ) {
-        super (name, author, isbn, publishedDate);
-
-        this.fileSize = fileSize;
         this.playTime = playTime;
-        this.language = language;
     }
 
     public Long getFileSize() {
@@ -51,7 +46,7 @@ public class AudioBook extends Book{
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAuthor(), getIsbn());
+        return Objects.hash(super.hashCode());
     }
 
     @Override

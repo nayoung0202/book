@@ -5,17 +5,16 @@ import java.util.Objects;
 
 public class EBook extends Book {
     private Long fileSize;
-
     public EBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, Long fileSize) {
-        super (id, name, author, isbn, publishedDate);
-
+        this.setId(id);
+        this.setName(name);
+        this.setAuthor(author);
+        this.setIsbn(isbn);
+        this.setPublishedDate(publishedDate);
         this.fileSize = fileSize;
     }
-    public EBook(String name, String author, Long isbn, LocalDate publishedDate, Long fileSize) {
-        super (name, author, isbn, publishedDate);
 
-        this.fileSize = fileSize;
-    }
+
     public Long getFileSize() {
         return fileSize;
     }
@@ -26,7 +25,7 @@ public class EBook extends Book {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getAuthor(), getIsbn());
+        return Objects.hash(super.hashCode());
     }
 
     @Override

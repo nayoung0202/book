@@ -1,9 +1,9 @@
 package base;
 
 public class Execute {
-    static BookManager bm4 = new BM4();
+    static BookManager bm5 = new BM5();
     public static void main(String[] args) {
-        bm4.init();
-        bm4.interactWithUser();
+        bm5.init();
+        bm5.interactWithUser();
     }
 }

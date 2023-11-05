@@ -18,18 +18,6 @@ public class Book {
         this.isbn = isbn;
         this.publishedDate = publishedDate;
     }
-    public Book(String name, String author, Long isbn, LocalDate publishedDate) {
-        this.name = name;
-        this.author = author;
-        this.isbn = isbn;
-        this.publishedDate = publishedDate;
-    }
-    public Book(long id, String author, Long isbn, LocalDate publishedDate) {
-        this.id = id;
-        this.author = author;
-        this.isbn = isbn;
-        this.publishedDate = publishedDate;
-    }
 
     public Book() {
 
@@ -89,9 +77,9 @@ public class Book {
     return false;
     }
 
-    public String toString(Long key) {
+    public String toString() {
         String toStr = "";
-        toStr += "[" + key + "," + this.name + "," + this.author + "," + this.isbn + "," + this.publishedDate;
+        toStr += "[" + this.id +  "," + this.name + "," + this.author + "," + this.isbn + "," + this.publishedDate;
         if (this instanceof EBook) {
             toStr += ", " + ((EBook)this).getFileSize() + "mb";
         } else if(this instanceof AudioBook){
