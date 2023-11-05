@@ -72,6 +72,7 @@ public class ArrayListRepo implements BookRepository{
             for (int j = 0; j < i; j++) {
                 if (sameBooks.get(i).equals(sameBooks.get(j))) {
                     count++;
+                    System.out.println("------ 상호 중복 도서(제목,저자,isbn이 같습니다.) ------");
                     System.out.println(sameBooks.get(i).toString());
                     System.out.println(sameBooks.get(j).toString());
                 }

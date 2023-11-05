@@ -13,8 +13,6 @@ public class EBook extends Book {
         this.setPublishedDate(publishedDate);
         this.fileSize = fileSize;
     }
-
-
     public Long getFileSize() {
         return fileSize;
     }

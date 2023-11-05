@@ -7,7 +7,7 @@ import java.util.stream.*;
 public class BM5 extends BookManager {
     //hashmap,arraylist 양쪽에 대응하기 위해 여기서 일부 수정해야함
     //양쪽에 대응하는지 테스트 하기 위해서는 new HashMapRepo 를 ArrayListRepo 로 변경
-    private static BookRepository bookList = new HashMapRepo();
+    private static BookRepository bookList = new ArrayListRepo();
     static Scanner sc = new Scanner(System.in);
     @Override
     void init() {
