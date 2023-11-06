@@ -2,9 +2,10 @@ package base;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.logging.LogManager;
 
 public class AudioBook extends Book{
-    private String fileSize;
+    private Long fileSize;
     private String language;
     private int playTime;
 
@@ -14,13 +15,14 @@ public class AudioBook extends Book{
             AudioBook b = (AudioBook) obj;
 
             if(this.getName().equals(b.getName()) &&
-                this.getAuthor().equals(b.getAuthor())
-                && this.getIsbn().equals(b.getIsbn())) {
-            return true;
+                    this.getAuthor().equals(b.getAuthor())
+                    && this.getIsbn().equals(b.getIsbn())) {
+                return true;
+            }
         }
-    }
         return false;
     }
+
 
     @Override
     public int hashCode() {
@@ -28,15 +30,18 @@ public class AudioBook extends Book{
     }
 
     public AudioBook(Long id, String name, String author, Long isbn, LocalDate publishedDate,
-                     String fileSize, String language, int playTime ) {
-        super (id, name, author, isbn, publishedDate);
-
+                     Long fileSize, String language, int playTime ) {
+        this.setId(id);
+        this.setName(name);
+        this.setAuthor(author);
+        this.setIsbn(isbn);
+        this.setPublishedDate(publishedDate);
         this.fileSize = fileSize;
-        this.playTime = playTime;
         this.language = language;
+        this.playTime = playTime;
     }
 
-    public String getFileSize() {
+    public Long getFileSize() {
         return fileSize;
     }
 
@@ -48,7 +53,7 @@ public class AudioBook extends Book{
         return playTime;
     }
 
-    public void setFileSize(String fileSize) {
+    public void setFileSize(Long fileSize) {
         this.fileSize = fileSize;
     }
 

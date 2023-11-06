@@ -169,7 +169,7 @@
 //                    bookInfo[2],
 //                    Long.parseLong(bookInfo[3]),
 //                    LocalDate.parse(bookInfo[4]),
-//                    bookInfo[5]);
+//                    Long.parseLong(bookInfo[5]));
 //            bookList.add(Ebook);
 //
 //        } else if (InputNumber.equals("3")) {
@@ -210,7 +210,7 @@
 //                    bookInfo[2],
 //                    Long.parseLong(bookInfo[3]),
 //                    LocalDate.parse(bookInfo[4]),
-//                    bookInfo[5],
+//                    Long.parseLong(bookInfo[5]),
 //                    bookInfo[6],
 //                    Integer.parseInt(bookInfo[7]));
 //            bookList.add(audioBook);
@@ -468,11 +468,11 @@
 //        if(book instanceof EBook){
 //            System.out.print("파일크기(mb): ");
 //            bookInfo[5] = sc.nextLine();
-//            ((EBook)book).setFileSize(bookInfo[5]);
+//            ((EBook)book).setFileSize(Long.parseLong(bookInfo[5]));
 //        } else if(book instanceof AudioBook){
 //            System.out.print("파일크기(mb): ");
 //            bookInfo[5] = sc.nextLine();
-//            ((AudioBook)book).setFileSize(bookInfo[5]);
+//            ((AudioBook)book).setFileSize(Long.parseLong(bookInfo[5]));
 //            System.out.print("재생언어: ");
 //            bookInfo[6] = sc.nextLine();
 //            ((AudioBook)book).setLanguage(bookInfo[6]);

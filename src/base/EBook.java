@@ -19,23 +19,28 @@ public class EBook extends Book {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(super.hashCode(), fileSize);
     }
 
     private Long fileSize;
 
-    public EBook(Long id, String name, String author, Long isbn, LocalDate publishedDate, Long fileSize) {
-        super (id, name, author, isbn, publishedDate);
-
+    public EBook(Long  id, String name, String author, Long isbn, LocalDate publishedDate, Long fileSize) {
+        this.setId(id);
+        this.setName(name);
+        this.setAuthor(author);
+        this.setIsbn(isbn);
+        this.setPublishedDate(publishedDate);
         this.fileSize = fileSize;
     }
     public Long getFileSize() {
+
         return fileSize;
     }
 
     public void setFileSize(Long fileSize) {
+
         this.fileSize = fileSize;
     }
 
 }
-
