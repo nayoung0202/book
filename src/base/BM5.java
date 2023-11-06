@@ -18,6 +18,18 @@ public class BM5 extends BookManager {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        //기존 사전 데이터
+//        bookList.addBook(3L, new Book(3L,"부자아빠 가난한아빠", "로버트 키요사키", Long.parseLong("5791144331796"), LocalDate.parse("1999-02-15")));
+//        bookList.addBook(20L, new AudioBook(20L,"산마처럼 비웃는 것", "미쓰다 신조", Long.parseLong("0211129850369"), LocalDate.parse("2008-01-24"), 7500L, "일본어", 9999));
+//        bookList.addBook(2L, new EBook(2L,"K 배터리 레볼루션", "박순혁", Long.parseLong("9791191521221"), LocalDate.parse("2023-02-20"), 1000L));
+//        bookList.addBook(11L, new EBook(11L,"k 배터리 레볼루션", "박순자", Long.parseLong("9791191521221"), LocalDate.parse("2017-08-02"), 1000L));
+//        bookList.addBook(4L, new AudioBook(4L,"위기의 역사", "오건영", Long.parseLong("7711123000360"), LocalDate.parse("2023-07-19"), 5000L, "영어", 1234));
+//        bookList.addBook(98L, new EBook(98L,"탁류", "채만식", Long.parseLong("8791169021424"), LocalDate.parse("1974-05-28"), 1500L));
+//        bookList.addBook(1L, new Book(1L,"돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331795"), LocalDate.parse("2020-06-15")));
+//        bookList.addBook(5L, new Book(5L,"돈의 속성(300쇄 리커버에디션)", "김승호", Long.parseLong("9791188331795"), LocalDate.parse("2021-09-24")));
+//        bookList.addBook(6L, new Book(6L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14")));
+//        bookList.addBook(7L, new EBook(7L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"),8000L));
+//        bookList.addBook(8L, new AudioBook(8L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"), 8000L, "일본어", 45000));
     }
     //파일 쓰기
    public static void write(String filePath) throws Exception {
