@@ -20,6 +20,10 @@ public class AudioBook extends Book{
         this.playTime = playTime;
     }
 
+    public AudioBook() {
+
+    }
+
     public Long getFileSize() {
         return fileSize;
     }

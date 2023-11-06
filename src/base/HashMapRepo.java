@@ -23,21 +23,6 @@ public class HashMapRepo implements BookRepository {
             return false;
         }
     }
-
-    @Override
-    public void printBook() {
-        //hashMap 조회. 아래는 람다식 변환전
-        //Map.Entry를 통해 개별 키값,밸류갑을 entry에 담음 >브레이크 포인트로 확인시, 개별 값이 담겨있음
-        //entrySet을 통해 전체 키값, 밸류값을 담음 > 브레이크 포인트로 확인시, 전체 값이 담겨있음
-        //나머지는 for문 하듯이 반복.
-//        for (Map.Entry<Long, Book> entry : bookList.entrySet()) {
-//                    Long key = entry.getKey();
-//                    Book bookval = entry.getValue();
-//                    System.out.println(bookval.toString());
-//                }
-        bookList.forEach((key, bookval) -> System.out.println(bookval.toString()));
-    }
-
     @Override
     public Book getBook(Long id) {
         //키값

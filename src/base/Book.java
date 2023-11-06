@@ -83,9 +83,9 @@ public class Book {
         String toStr = "";
         toStr += "[" + this.id +  "," + this.name + "," + this.author + "," + this.isbn + "," + this.publishedDate;
         if (this instanceof EBook) {
-            toStr += ", " + ((EBook)this).getFileSize() + "mb";
+            toStr += "," + ((EBook)this).getFileSize() + "mb";
         } else if(this instanceof AudioBook){
-            toStr += ", " + ((AudioBook)this).getFileSize() + "mb, " + ((AudioBook)this).getLanguage() + ", " +((AudioBook)this).getPlayTime() + "초";
+            toStr += "," + ((AudioBook)this).getFileSize() + "mb," + ((AudioBook)this).getLanguage() + "," +((AudioBook)this).getPlayTime() + "초";
         }
         toStr += "]";
         return toStr;

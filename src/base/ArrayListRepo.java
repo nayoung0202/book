@@ -23,14 +23,6 @@ public class ArrayListRepo implements BookRepository{
     }
 
     @Override
-    public void printBook() {
-        for (Book book : bookList) {
-            //arrayList 조회
-            System.out.println(book.toString());
-        }
-    }
-
-    @Override
     public Book getBook(Long id) {
         return idCheck(id);
     }

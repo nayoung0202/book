@@ -11,7 +11,6 @@ public interface BookRepository {
     //구현 객체는 단 두개만 만들면 됨.
     //BM5를 어떻게바꿀까....?
     boolean addBook(Long id, Book book);
-    void printBook();
     Book getBook(Long id);
     List<Book> getBooks();
     void removeBook(long id);
