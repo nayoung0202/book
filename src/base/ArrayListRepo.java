@@ -1,5 +1,6 @@
 package base;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -37,11 +38,6 @@ public class ArrayListRepo implements BookRepository{
     @Override
     public List<Book> getBooks() {
         return bookList;
-    }
-
-    @Override
-    public List<Book> getBooks(Predicate<Book> predicate) {
-        return null;
     }
 
     @Override
@@ -92,5 +88,4 @@ public class ArrayListRepo implements BookRepository{
             }
         } return null;
     }
-
 }

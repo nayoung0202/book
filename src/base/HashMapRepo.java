@@ -51,11 +51,6 @@ public class HashMapRepo implements BookRepository {
     }
 
     @Override
-    public List<Book> getBooks(Predicate<Book> predicate) {
-        return null;
-    }
-
-    @Override
     public void removeBook(long id) {
         //삭제
         if (bookList.get(id) != null) {
@@ -77,6 +72,7 @@ public class HashMapRepo implements BookRepository {
 
     @Override
     public void sameBooks() {
+        //스트림으로 재구성하자
         Set<Long> keyset = bookList.keySet();
         Iterator<Long> iterator = keyset.iterator();
         //중복 카운트용
@@ -103,4 +99,5 @@ public class HashMapRepo implements BookRepository {
         }
         System.out.println("중복 개수 : " + count / 2);
     }
+
 }

@@ -1,6 +1,7 @@
 package base;
 import base.Book;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,7 +14,6 @@ public interface BookRepository {
     void printBook();
     Book getBook(Long id);
     List<Book> getBooks();
-    List<Book> getBooks(Predicate<Book> predicate);
     void removeBook(long id);
     void updateBook(long id, Book book);
     void sameBooks();

@@ -29,12 +29,12 @@ public class EBook extends Book {
     @Override
     public boolean equals(Object obj) {
         if(obj instanceof EBook){
-        EBook b = (EBook) obj;
-        if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn().equals(b.getIsbn())){
-            return true;
+            EBook b = (EBook) obj;
+            if(this.getName().equals(b.getName()) && this.getAuthor().equals(b.getAuthor()) && this.getIsbn().equals(b.getIsbn())){
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
         return false;
     }
 }

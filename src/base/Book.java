@@ -71,8 +71,10 @@ public class Book {
     @Override
     public boolean equals(Object obj) {
         Book b = (Book) obj;
-        if (this.name.equals(b.name) && this.author.equals(b.author) && this.isbn.equals(b.isbn)) {
-            return true;
+        if(obj instanceof Book) {
+            if (this.name.equals(b.name) && this.author.equals(b.author) && this.isbn.equals(b.isbn)) {
+                return true;
+            }
         }
     return false;
     }

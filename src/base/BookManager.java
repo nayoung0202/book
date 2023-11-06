@@ -2,7 +2,7 @@ package base;
 
 
 public abstract class BookManager {
-    abstract void init();
+    abstract void init() throws Exception;
     abstract void interactWithUser();
     abstract void addBook();
     abstract void printAllBook();

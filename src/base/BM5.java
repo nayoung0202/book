@@ -1,4 +1,5 @@
 package base;
+import java.io.*;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -23,6 +24,53 @@ public class BM5 extends BookManager {
         bookList.addBook(6L, new Book(6L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14")));
         bookList.addBook(7L, new EBook(7L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"),8000L));
         bookList.addBook(8L, new AudioBook(8L,"침묵의 퍼레이드", "히가시노 게이고", Long.parseLong("3211671290842"), LocalDate.parse("2022-02-14"), 8000L, "일본어", 45000));
+        try {
+            write();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            read();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    //파일 쓰기
+   public void write() throws Exception {
+       String filePath = "C:/Temp/books.txt";
+       String charsetName = "UTF-8";
+        //출력패스 정의
+        OutputStream os = new FileOutputStream(filePath);
+        //버퍼 정의
+        BufferedOutputStream bufferWriter = new BufferedOutputStream(os);
+        //버퍼에 올린걸 UTF-8으로 출력
+        Writer writer = new OutputStreamWriter(bufferWriter, charsetName);
+
+       List<Book> bookList1 = bookList.getBooks();
+       for(Book bookval : bookList1){
+           writer.write(bookval.toString().substring(1, bookval.toString().length()-1) + "\n");
+       }
+       writer.flush();
+       writer.close();
+    }
+
+    //파일 읽기
+    public void read() throws Exception {
+        String filePath = "C:/Temp/books.txt";
+        String charsetName = "UTF-8";
+        //입력패스 정의
+        InputStream is = new FileInputStream(filePath);
+        //버퍼 정의
+        BufferedInputStream bis = new BufferedInputStream(is);
+        //입력 UTF-8
+        Reader reader = new InputStreamReader(is, charsetName);
+
+        List<Book> bookList1 = bookList.getBooks();
+        for(Book bookval : bookList1){
+            reader.read(bookval.getId());
+
+        }
+        reader.close();
     }
     @Override
     void interactWithUser() {
@@ -192,8 +240,9 @@ public class BM5 extends BookManager {
         System.out.println("(6)중복 책 찾기");
         String InputNumber = sc.nextLine();
         if (InputNumber.equals("1")) {
-            //HashMap,arrayList 인터페이스 재정의 메소드 printBook사용
+            //HashMap,arrayList 인터페이스 재정의 메소드 printBook사용 > 사용해야하는가?
             bookList.printBook();
+
         } else if (InputNumber.equals("2")) {
             System.out.println("책 제목을 입력해 주세요(부분만 입력 가능) ");
             System.out.println("ex) " + "'해리'를 입력하시면 " + "해리란 단어가 포함된 책을 조회합니다.");
